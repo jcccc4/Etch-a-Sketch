@@ -1,0 +1,9 @@
+.grid{
+    outline: 1px solid black;
+    display: grid;
+    background-color: #2196F3;
+}
+
+.container {
+    display: grid;
+}
