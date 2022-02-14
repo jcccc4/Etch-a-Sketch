@@ -9,17 +9,18 @@ let btn = document.querySelector(".clear")
 
 let container = document.createElement('div');
 let sketch_box = document.querySelector('.sketch-box')
+let num = slider.value
 container.className = `container`;
-container.style.gridTemplateColumns = `repeat( 2, 256px)`;
+container.style.gridTemplateColumns = `repeat( ${num}, ${512 / num}px)`;
 
 sketch_box.append(container)
 
-for (let i = 0; i < 2 * 2; i++) {
+for (let i = 0; i < num * num; i++) {
     let gridSelector = document.querySelector('.container');
     let grid = document.createElement('div');
     grid.className = `grid`;
-    grid.style.height = `256px`
-    grid.style.width = `256px`
+    grid.style.height = `${512 / num}px`
+    grid.style.width = `${512 / num}px`
     gridSelector.append(grid);
 }
 
