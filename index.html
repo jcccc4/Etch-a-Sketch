@@ -15,15 +15,21 @@
         <header>
             Etch-A-Sketch
         </header>
-        <div class="sketch-box">
-        </div>
-        <div>
-            <input type="range" min="2" max="64" value="2" class="slider">
-            <button class="clr">Clear</button>
-            <button class="Random">Random Color</button>
-            <button class="Random">Black and White</button>
-            <button class="clr">Clear</button>
-        </div>
+        <section>
+            <div class="sketch-box">
+            </div>
+            <div>
+                <input type="range" min="2" max="64" value="2" class="slider">
+
+            </div>
+            <div class="option">
+                <input type="radio" id="bnw" name="status" value="bnw" class="toggle" checked>
+                <label for="bnw">Black and White</label><br>
+                <input type="radio" id="randColor" name="status" value="randColor" class="toggle">
+                <label for="randColor">Random Color</label><br>
+            </div>
+            <button class="clear">CLEAR</button>
+        </section>
         <footer>
 
         </footer>

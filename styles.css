@@ -1,9 +1,23 @@
 .grid{
-    outline: 1px solid black;
+    outline: 1px solid gray;
     display: grid;
-    background-color: #2196F3;
+    background-color: white;
 }
 
 .container {
     display: grid;
+    background-color: blue;
+    align-items: center;
+}
+
+header{
+    text-align: center;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+
 }

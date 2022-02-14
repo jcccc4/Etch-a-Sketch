@@ -1,6 +1,8 @@
 
 let slider = document.querySelector('.slider')
-
+var defaultColor = 'black'
+var blackAndWhite = true
+let btn = document.querySelector(".clear")
 //Creating Grid
 
 
@@ -8,24 +10,24 @@ let slider = document.querySelector('.slider')
 let container = document.createElement('div');
 let sketch_box = document.querySelector('.sketch-box')
 container.className = `container`;
-container.style.gridTemplateColumns = `repeat( 64, 8px)`;
+container.style.gridTemplateColumns = `repeat( 2, 256px)`;
 
 sketch_box.append(container)
 
-for (let i = 0; i < 64 * 64; i++) {
+for (let i = 0; i < 2 * 2; i++) {
     let gridSelector = document.querySelector('.container');
     let grid = document.createElement('div');
     grid.className = `grid`;
-    grid.style.height = `8px`
-    grid.style.width = `8px`
+    grid.style.height = `256px`
+    grid.style.width = `256px`
     gridSelector.append(grid);
 }
 
-function createGrid(e) {
+function createGrid() {
     document.querySelector('.container').remove()
     let container = document.createElement('div');
     let sketch_box = document.querySelector('.sketch-box')
-    let num = e.target.value
+    let num = slider.value
     container.className = `container`;
     container.style.gridTemplateColumns = `repeat( ${num}, ${512 / num}px)`;
 
@@ -48,7 +50,12 @@ function gridPaint(e) {
     if (e.buttons == 1) {
         if (e.target.classList == 'grid') {
             let square = e.target;
-            square.style.backgroundColor = 'black';
+            if (blackAndWhite) {
+                square.style.backgroundColor = `${defaultColor}`
+            }
+            else {
+                square.style.backgroundColor = `${generateRandomColor()}`;
+            }
         }
     }
 }
@@ -62,8 +69,34 @@ function onMouseDown(e) {
     }
 }
 
+function generateRandomColor() {
+    let maxVal = 0xFFFFFF; // 16777215
+    let randomNumber = Math.random() * maxVal;
+    randomNumber = Math.floor(randomNumber);
+    randomNumber = randomNumber.toString(16);
+    let randColor = randomNumber.padStart(6, 0);
+    return `#${randColor.toUpperCase()}`
+}
 
 
+// const radio = document.querySelectorAll('.toggle')
+const option = document.querySelector(".option")
+var selectedSize;
+
+function colorPicker(e) {
+    if (e.target.value === 'bnw') {
+        blackAndWhite = true
+        createGrid(slider.value)
+
+    }
+    else {
+        blackAndWhite = false
+        createGrid(slider.value)
+    }
+}
+
+btn.addEventListener('click', () => createGrid(slider.value))
+option.addEventListener('change', colorPicker)
 slider.addEventListener('change', createGrid)
 container.addEventListener('mousedown', onMouseDown)
 
